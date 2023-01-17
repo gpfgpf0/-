@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<ctype.h>
+#include<string.h>
+#include<time.h>
+int arr[100010];
+int brr[100010];
+int main()
+{
+    int n,count=0,tmp,tmp2;
+    int max=0,max1=0;
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&tmp);
+        int k=0;
+        for(int j=1;j<=max;j++)
+        {
+            if(brr[j])
+            {
+                tmp2=abs(j-tmp);
+                arr[k++]=tmp2;
+                tmp2=j+tmp;
+                arr[k++]=tmp2;
+                if(tmp2>max1)
+                max1=tmp2;
+            }
+        }
+        if(tmp>max1)
+        max1=tmp;
+        max=max1;
+        arr[k++]=tmp;
+        for(int j=0;j<k;j++)
+        {
+            brr[arr[j]]++;
+            arr[j]=0;
+        }        
+    }
+    for(int i=1;i<=100000;i++)
+    if(brr[i])
+    count++;
+    printf("%d",count);
+    return 0;
+}
